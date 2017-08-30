@@ -6,6 +6,7 @@ import controllers.forms.CreateTeamForm
 import controllers.utils.GeneralUtils
 import dao.TeamDao
 import models.Team
+import play.api.libs.json.Json
 import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request}
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -19,7 +20,7 @@ class TeamController @Inject()(teamDao: TeamDao, controllerComponents: Controlle
       CreateTeamForm(name) <- Future.fromTry(CreateTeamForm.fromRequest)
       teamId = GeneralUtils.generateRandomUuid()
       _ <- teamDao.insert(Team(teamId, name))
-    } yield Ok
+    } yield Ok(Json.obj("Result" -> "Success"))
   }
 
 }
