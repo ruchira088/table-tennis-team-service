@@ -7,7 +7,7 @@ import dao.{TeamDao, UserDao}
 import models.User
 import org.joda.time.DateTime
 import play.api.libs.json.Json
-import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request}
+import play.api.mvc._
 import utils.GeneralUtils
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -17,7 +17,7 @@ class UserController @Inject()(userDao: UserDao, teamDao: TeamDao, controllerCom
                               (implicit executionContext: ExecutionContext)
   extends AbstractController(controllerComponents)
 {
-  def create() = Action.async {
+  def create(): Action[AnyContent] = Action.async {
     implicit request: Request[AnyContent] => for {
       CreateUserForm(teamName, username, firstName, lastName, email) <- Future.fromTry(CreateUserForm.fromRequest)
       team <-teamDao.findByName(teamName)

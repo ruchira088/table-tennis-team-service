@@ -7,6 +7,8 @@
 GET     /                           controllers.HomeController.index
 
 POST    /team                       controllers.TeamController.create
+GET     /team/:teamName             controllers.TeamController.get(teamName)
+
 POST    /user                       controllers.UserController.create
 
 # Map static resources from the /public folder to the /assets URL path
