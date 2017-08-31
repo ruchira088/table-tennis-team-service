@@ -1,4 +1,4 @@
-package controllers.utils
+package utils
 
 import java.util.UUID
 
