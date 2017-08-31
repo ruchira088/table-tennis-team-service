@@ -18,13 +18,14 @@ class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
 
   private class UserTable(tag: Tag) extends Table[User](tag, "USERS")
   {
-    def id = column[String]("ID", O.PrimaryKey)
+    def id = column[String]("ID")
     def teamId = column[String]("TEAM_ID")
-    def username = column[String]("USERNAME", O.Unique)
+    def username = column[String]("USERNAME")
     def createAt = column[Timestamp]("CREATED_AT")
     def firstName = column[Option[String]]("FIRST_NAME")
     def lastName = column[Option[String]]("LAST_NAME")
     def email = column[String]("EMAIL")
+    def pk = primaryKey("pk", (id, createAt))
 
     def * : ProvenShape[User] = (id, teamId, username, createAt, firstName, lastName, email) <>
       ((User.applyDb _).tupled, User.unapplyDb)

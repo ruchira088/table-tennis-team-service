@@ -8,7 +8,7 @@ import models.Team
 import org.joda.time.DateTime
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
-import slick.lifted.ProvenShape
+import slick.lifted.{PrimaryKey, ProvenShape}
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -20,9 +20,10 @@ class TeamDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
 
   private class TeamTable(tag: Tag) extends Table[Team](tag, "TEAMS")
   {
-    def id = column[String]("ID", O.PrimaryKey)
-    def name = column[String]("NAME", O.Unique)
+    def id = column[String]("ID")
+    def name = column[String]("NAME")
     def createdAt = column[Timestamp]("CREATED_AT")
+    def pk = primaryKey("pk", (id, createdAt))
 
     def * : ProvenShape[Team] = (id, name, createdAt) <> ((Team.applyDb _ ).tupled, Team.unapplyDb)
   }
