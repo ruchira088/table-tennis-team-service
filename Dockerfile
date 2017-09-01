@@ -19,8 +19,8 @@ COPY . .
 
 RUN sbt compile
 
-EXPOSE 8000
+EXPOSE 9000
 
 ENTRYPOINT ["sbt"]
 
-CMD ["-jvm-debug", "5005", "~run", "8000"]
+CMD ["-jvm-debug", "5005", "~run"]
