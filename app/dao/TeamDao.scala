@@ -5,10 +5,9 @@ import javax.inject.{Inject, Singleton}
 
 import exceptions.UnableFindTeamException
 import models.Team
-import org.joda.time.DateTime
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
-import slick.lifted.{PrimaryKey, ProvenShape}
+import slick.lifted.ProvenShape
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -36,6 +35,10 @@ class TeamDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
     db.run(teamTable.filter(_.name === name).exists.result)
 
   def insert(team: Team): Future[Int] = db.run(teamTable += team)
+
+  def searchByName(nameKeyword: String): Future[List[Team]] =
+    db.run(teamTable.filter(_.name.like(s"%$nameKeyword%")).result).map(_.toList)
+
 
   def findByName(name: String): Future[Team] =
     db.run(teamTable.filter(_.name === name).result.headOption).flatMap {

@@ -30,6 +30,12 @@ class TeamController @Inject()(teamDao: TeamDao, userDao: UserDao, controllerCom
       } yield Ok(Json.toJson(team))
   }
 
+  def search(nameKeyword: String): Action[AnyContent] = Action async {
+    for {
+      teams <- teamDao.searchByName(nameKeyword)
+    } yield Ok(Json.toJson(teams))
+  }
+
   def get(name: String): Action[AnyContent] = Action.async {
     for {
       team <- teamDao.findByName(name)
