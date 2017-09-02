@@ -19,7 +19,7 @@ COPY . .
 
 RUN sbt compile
 
-EXPOSE 9000
+EXPOSE 9000 5005
 
 ENTRYPOINT ["sbt"]
 
