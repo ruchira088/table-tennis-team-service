@@ -1,11 +1,11 @@
-name := """team-service"""
+name := """table-tennis-team-service"""
 organization := "com.ruchij"
 
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.3"
 
 libraryDependencies += guice
 libraryDependencies += "mysql" % "mysql-connector-java" % "6.0.6"
