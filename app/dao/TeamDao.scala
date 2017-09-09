@@ -17,11 +17,11 @@ class TeamDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
 {
   import profile.api._
 
-  private class TeamTable(tag: Tag) extends Table[Team](tag, "TEAMS")
+  private class TeamTable(tag: Tag) extends Table[Team](tag, "teams")
   {
-    def id = column[String]("ID")
-    def name = column[String]("NAME")
-    def createdAt = column[Timestamp]("CREATED_AT")
+    def id = column[String]("id")
+    def name = column[String]("name")
+    def createdAt = column[Timestamp]("created_at")
     def pk = primaryKey("pk", (id, createdAt))
 
     def * : ProvenShape[Team] = (id, name, createdAt) <> ((Team.applyDb _ ).tupled, Team.unapplyDb)

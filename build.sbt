@@ -8,6 +8,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.12.3"
 
 libraryDependencies += guice
+libraryDependencies += "org.postgresql" % "postgresql" % "42.1.4"
 libraryDependencies += "mysql" % "mysql-connector-java" % "6.0.6"
 libraryDependencies += "com.typesafe.play" % "play-slick_2.12" % "3.0.1"
 libraryDependencies += "com.typesafe.play" % "play-slick-evolutions_2.12" % "3.0.1"

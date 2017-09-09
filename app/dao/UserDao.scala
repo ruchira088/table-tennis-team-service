@@ -17,15 +17,15 @@ class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
 {
   import profile.api._
 
-  private class UserTable(tag: Tag) extends Table[User](tag, "USERS")
+  private class UserTable(tag: Tag) extends Table[User](tag, "users")
   {
-    def id = column[String]("ID")
-    def teamId = column[String]("TEAM_ID")
-    def username = column[String]("USERNAME")
-    def createAt = column[Timestamp]("CREATED_AT")
-    def firstName = column[Option[String]]("FIRST_NAME")
-    def lastName = column[Option[String]]("LAST_NAME")
-    def email = column[String]("EMAIL")
+    def id = column[String]("id")
+    def teamId = column[String]("team_id")
+    def username = column[String]("username")
+    def createAt = column[Timestamp]("created_at")
+    def firstName = column[Option[String]]("first_name")
+    def lastName = column[Option[String]]("last_name")
+    def email = column[String]("email")
     def pk = primaryKey("pk", (id, createAt))
 
     def * : ProvenShape[User] = (id, teamId, username, createAt, firstName, lastName, email) <>
