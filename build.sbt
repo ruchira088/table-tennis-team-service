@@ -10,6 +10,7 @@ scalaVersion := "2.12.3"
 libraryDependencies += guice
 libraryDependencies += "org.postgresql" % "postgresql" % "42.1.4"
 libraryDependencies += "mysql" % "mysql-connector-java" % "6.0.6"
+libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 libraryDependencies += "com.typesafe.play" % "play-slick_2.12" % "3.0.1"
 libraryDependencies += "com.typesafe.play" % "play-slick-evolutions_2.12" % "3.0.1"
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.0" % Test
