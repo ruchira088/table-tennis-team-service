@@ -20,6 +20,7 @@ class TeamControllerSpec extends PlaySpec with GuiceOneAppPerSuiteWithInMemoryDa
       val response = route(app, request).get
 
       status(response) mustBe OK
+      contentAsJson(response) must containsKeyValue("name" -> "Juno")
     }
   }
 }
