@@ -10,9 +10,14 @@ jobs:
       - checkout
       - restore_cache:
           key: sbt-cache-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
-      - run: sbt compile
+      - run:
+          name: SBT compile
+          command: sbt compile
       - save_cache:
           paths:
             - ~/.sbt
             - ~/.ivy2/cache
           key: sbt-cache-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
+      - run:
+          name: Running tests...
+          command: sbt test
