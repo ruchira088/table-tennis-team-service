@@ -8,6 +8,9 @@ jobs:
       - image: hseeberger/scala-sbt:8u141-jdk_2.12.3_0.13.16
     steps:
       - checkout
+      - run:
+          name: Clean SBT project
+          command: sbt clean
       - restore_cache:
           key: sbt-cache-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
       - run:
@@ -19,11 +22,10 @@ jobs:
             - ~/.ivy2/cache
           key: sbt-cache-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
       - run:
-          name: Clean SBT project
-          command: sbt clean
-      - run:
           name: Run tests
           command: sbt coverage test
       - run:
           name: Create coverage report
           command: sbt coverageReport
+      - store_test_results:
+          path: target/scala-2.12/scoverage-report
