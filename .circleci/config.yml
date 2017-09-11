@@ -30,3 +30,6 @@ jobs:
       - store_artifacts:
           path: target/scala-2.12/scoverage-report
           destination: coverage-report
+      - store_artifacts:
+          path: target/html-test-reports
+          destination: results-report
