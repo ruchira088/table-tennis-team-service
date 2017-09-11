@@ -14,6 +14,9 @@ libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 libraryDependencies += "com.typesafe.play" % "play-slick_2.12" % "3.0.1"
 libraryDependencies += "com.typesafe.play" % "play-slick-evolutions_2.12" % "3.0.1"
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.0" % Test
+libraryDependencies += "org.pegdown" % "pegdown" % "1.6.0" % Test
+
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-h", "target/html-test-reports")
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.ruchij.controllers._"
