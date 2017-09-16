@@ -37,7 +37,7 @@ class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   def create(user: User): Future[Int] = db.run(userTable += user)
 
   def findByTeamId(teamId: String): Future[List[User]] =
-    db.run(userTable.filter(_.teamId === teamId).result).map(_.toList)
+    db.run(userTable.filter(_.teamId === teamId).sortBy(_.createAt.desc).result).map(_.toList)
 
   def exists(username: String): Future[Boolean] =
     db.run(userTable.filter(_.username === username).exists.result)
